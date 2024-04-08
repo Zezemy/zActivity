@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>zActivity Home Page</title>
+    <link rel="stylesheet" href="./lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.7/css/swiper.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <style>
+      .mt-100 {
+        position: absolute;
+        margin-top: -20%;
+        margin-left: 70%;
+      }
+      .card {
+        border-radius: 10px;
+        margin-bottom: 20px;
+      }
+      .card-body-container {
+        background-color: rgba(128, 128, 128, 0.9);
+        max-height: 15vh;
+        border-radius: 10px;
+        margin-top: -10%;
+        color: azure;
+      }
+
+      .card-title {
+        max-width: 30vh;
+        max-height: 20px;
+        font-weight: 500;
+        overflow: hidden;
+      }
+
+      .card-text {
+        margin: auto;
+        color: rgb(170, 255, 0);
+        font-weight: bold;
+      }
+
+      .fa {
+        margin-right: 5px;
+      }
+    </style>
+    <style id="INLINE_PEN_STYLESHEET_ID">
+      [class^="swiper-button-"] {
+        transition: all 0.3s ease;
+      }
+
+      .swiper-slide {
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+      }
+
+      *,
+      *:before,
+      *:after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      .swiper-container {
+        position: relative;
+        top: 7vh;
+        width: 80%;
+        height: 60vh;
+        float: left;
+        transition: opacity 0.6s ease, transform 0.3s ease;
+        margin-bottom: 10vh;
+      }
+      .swiper-container.nav-slider {
+        width: 20%;
+        padding-left: 5px;
+      }
+      .swiper-container.nav-slider .swiper-slide {
+        cursor: pointer;
+        opacity: 0.4;
+        transition: opacity 0.3s ease;
+      }
+      .swiper-container.nav-slider .swiper-slide.swiper-slide-active {
+        opacity: 1;
+      }
+      .swiper-container.nav-slider .swiper-slide .content {
+        width: 100%;
+      }
+      .swiper-container.nav-slider .swiper-slide .content .title {
+        font-size: 20px;
+      }
+      .swiper-container:hover .swiper-button-prev,
+      .swiper-container:hover .swiper-button-next {
+        transform: translateX(0);
+        opacity: 1;
+        visibility: visible;
+      }
+      .swiper-container.loading {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .swiper-slide {
+        overflow: hidden;
+      }
+      .swiper-slide .slide-bgimg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-position: center;
+        background-size: cover;
+      }
+      .swiper-slide .entity-img {
+        display: none;
+      }
+      .swiper-slide .content {
+        position: absolute;
+        top: 70%;
+        left: 0;
+        width: 50%;
+        padding: 1%;
+        background-color: rgba(0, 51, 255, 0.7);
+        border-radius: 0 10px 10px 0;
+      }
+      .swiper-slide .content .title {
+        font-size: 2.6em;
+        font-weight: bold;
+        color: #ffd500;
+        margin-bottom: 10px;
+      }
+      .swiper-slide .content .caption {
+        display: block;
+        transform: translateX(50px);
+        opacity: 0;
+        transition: opacity 0.3s ease, transform 0.7s ease;
+        color: #fff8e0;
+      }
+      .swiper-slide .content .caption.show {
+        transform: translateX(0);
+        opacity: 1;
+      }
+
+      [class^="swiper-button-"] {
+        width: 44px;
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .swiper-button-prev {
+        transform: translateX(50px);
+      }
+
+      .swiper-button-next {
+        transform: translateX(-50px);
+      }
+    </style>
+    <script>
+      (window.HUB_EVENTS = {
+        ASSET_ADDED: "ASSET_ADDED",
+        ASSET_DELETED: "ASSET_DELETED",
+        ASSET_DESELECTED: "ASSET_DESELECTED",
+        ASSET_SELECTED: "ASSET_SELECTED",
+        ASSET_UPDATED: "ASSET_UPDATED",
+        CONSOLE_CHANGE: "CONSOLE_CHANGE",
+        CONSOLE_CLOSED: "CONSOLE_CLOSED",
+        CONSOLE_EVENT: "CONSOLE_EVENT",
+        CONSOLE_OPENED: "CONSOLE_OPENED",
+        CONSOLE_RUN_COMMAND: "CONSOLE_RUN_COMMAND",
+        CONSOLE_SERVER_CHANGE: "CONSOLE_SERVER_CHANGE",
+        EMBED_ACTIVE_PEN_CHANGE: "EMBED_ACTIVE_PEN_CHANGE",
+        EMBED_ACTIVE_THEME_CHANGE: "EMBED_ACTIVE_THEME_CHANGE",
+        EMBED_ATTRIBUTE_CHANGE: "EMBED_ATTRIBUTE_CHANGE",
+        EMBED_RESHOWN: "EMBED_RESHOWN",
+        FORMAT_FINISH: "FORMAT_FINISH",
+        FORMAT_ERROR: "FORMAT_ERROR",
+        FORMAT_START: "FORMAT_START",
+        IFRAME_PREVIEW_RELOAD_CSS: "IFRAME_PREVIEW_RELOAD_CSS",
+        IFRAME_PREVIEW_URL_CHANGE: "IFRAME_PREVIEW_URL_CHANGE",
+        KEY_PRESS: "KEY_PRESS",
+        LINTER_FINISH: "LINTER_FINISH",
+        LINTER_START: "LINTER_START",
+        PEN_CHANGE_SERVER: "PEN_CHANGE_SERVER",
+        PEN_CHANGE: "PEN_CHANGE",
+        PEN_EDITOR_CLOSE: "PEN_EDITOR_CLOSE",
+        PEN_EDITOR_CODE_FOLD: "PEN_EDITOR_CODE_FOLD",
+        PEN_EDITOR_ERRORS: "PEN_EDITOR_ERRORS",
+        PEN_EDITOR_EXPAND: "PEN_EDITOR_EXPAND",
+        PEN_EDITOR_FOLD_ALL: "PEN_EDITOR_FOLD_ALL",
+        PEN_EDITOR_LOADED: "PEN_EDITOR_LOADED",
+        PEN_EDITOR_REFRESH_REQUEST: "PEN_EDITOR_REFRESH_REQUEST",
+        PEN_EDITOR_RESET_SIZES: "PEN_EDITOR_RESET_SIZES",
+        PEN_EDITOR_SIZES_CHANGE: "PEN_EDITOR_SIZES_CHANGE",
+        PEN_EDITOR_UI_CHANGE_SERVER: "PEN_EDITOR_UI_CHANGE_SERVER",
+        PEN_EDITOR_UI_CHANGE: "PEN_EDITOR_UI_CHANGE",
+        PEN_EDITOR_UI_DISABLE: "PEN_EDITOR_UI_DISABLE",
+        PEN_EDITOR_UI_ENABLE: "PEN_EDITOR_UI_ENABLE",
+        PEN_EDITOR_UNFOLD_ALL: "PEN_EDITOR_UNFOLD_ALL",
+        PEN_ERROR_INFINITE_LOOP: "PEN_ERROR_INFINITE_LOOP",
+        PEN_ERROR_RUNTIME: "PEN_ERROR_RUNTIME",
+        PEN_ERRORS: "PEN_ERRORS",
+        PEN_LIVE_CHANGE: "PEN_LIVE_CHANGE",
+        PEN_LOGS: "PEN_LOGS",
+        PEN_MANIFEST_CHANGE: "PEN_MANIFEST_CHANGE",
+        PEN_MANIFEST_FULL: "PEN_MANIFEST_FULL",
+        PEN_PREVIEW_FINISH: "PEN_PREVIEW_FINISH",
+        PEN_PREVIEW_START: "PEN_PREVIEW_START",
+        PEN_SAVED: "PEN_SAVED",
+        POPUP_CLOSE: "POPUP_CLOSE",
+        POPUP_OPEN: "POPUP_OPEN",
+        POST_CHANGE: "POST_CHANGE",
+        POST_SAVED: "POST_SAVED",
+        PROCESSING_FINISH: "PROCESSING_FINISH",
+        PROCESSING_START: "PROCESSED_STARTED",
+      }),
+        "object" != typeof window.CP && (window.CP = {}),
+        (window.CP.PenTimer = {
+          programNoLongerBeingMonitored: !1,
+          timeOfFirstCallToShouldStopLoop: 0,
+          _loopExits: {},
+          _loopTimers: {},
+          START_MONITORING_AFTER: 2e3,
+          STOP_ALL_MONITORING_TIMEOUT: 5e3,
+          MAX_TIME_IN_LOOP_WO_EXIT: 2200,
+          exitedLoop: function (E) {
+            this._loopExits[E] = !0;
+          },
+          shouldStopLoop: function (E) {
+            if (this.programKilledSoStopMonitoring) return !0;
+            if (this.programNoLongerBeingMonitored) return !1;
+            if (this._loopExits[E]) return !1;
+            var _ = this._getTime();
+            if (0 === this.timeOfFirstCallToShouldStopLoop)
+              return (this.timeOfFirstCallToShouldStopLoop = _), !1;
+            var o = _ - this.timeOfFirstCallToShouldStopLoop;
+            if (o < this.START_MONITORING_AFTER) return !1;
+            if (o > this.STOP_ALL_MONITORING_TIMEOUT)
+              return (this.programNoLongerBeingMonitored = !0), !1;
+            try {
+              this._checkOnInfiniteLoop(E, _);
+            } catch {
+              return (
+                this._sendErrorMessageToEditor(),
+                (this.programKilledSoStopMonitoring = !0),
+                !0
+              );
+            }
+            return !1;
+          },
+          _sendErrorMessageToEditor: function () {
+            try {
+              if (this._shouldPostMessage()) {
+                var E = {
+                  topic: HUB_EVENTS.PEN_ERROR_INFINITE_LOOP,
+                  data: { line: this._findAroundLineNumber() },
+                };
+                parent.postMessage(E, "*");
+              } else this._throwAnErrorToStopPen();
+            } catch {
+              this._throwAnErrorToStopPen();
+            }
+          },
+          _shouldPostMessage: function () {
+            return document.location.href.match(/boomboom/);
+          },
+          _throwAnErrorToStopPen: function () {
+            throw "We found an infinite loop in your Pen. We've stopped the Pen from running. More details and workarounds at https://blog.codepen.io/2016/06/08/can-adjust-infinite-loop-protection-timing/";
+          },
+          _findAroundLineNumber: function () {
+            var E = new Error("ignored"),
+              _ = 0;
+            if (E.stack) {
+              var o = E.stack.match(/boomboom\S+:(\d+):\d+/);
+              o && (_ = o[1]);
+            }
+            return _;
+          },
+          _checkOnInfiniteLoop: function (E, _) {
+            if (!this._loopTimers[E]) return (this._loopTimers[E] = _), !1;
+            if (_ - this._loopTimers[E] > this.MAX_TIME_IN_LOOP_WO_EXIT)
+              throw "Infinite Loop found on loop: " + E;
+          },
+          _getTime: function () {
+            return Date.now();
+          },
+        }),
+        (window.CP.shouldStopExecution = function (E) {
+          var _ = window.CP.PenTimer.shouldStopLoop(E);
+          return (
+            !0 === _ &&
+              console.warn(
+                "[CodePen]: An infinite loop (or a loop taking too long) was detected, so we stopped its execution. More details at https://blog.codepen.io/2016/06/08/can-adjust-infinite-loop-protection-timing/"
+              ),
+            _
+          );
+        }),
+        (window.CP.exitedLoop = function (E) {
+          window.CP.PenTimer.exitedLoop(E);
+        });
+    </script>
+  </head>
+
+  <body>
+    <header>
+      <nav
+        class="navbar fixed-top navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
+      >
+        <div class="container-fluid">
+          <a class="navbar-brand">zActivity</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target=".navbar-collapse"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div
+            class="navbar-collapse collapse d-sm-inline-flex justify-content-between"
+          >
+            <ul class="navbar-nav flex-grow-1">
+              <li class="nav-item">
+                <a href="index.html" class="nav-link text-dark">Home</a>
+              </li>
+              <li class="nav-item">
+                <a href="events.html" class="nav-link text-dark">Events</a>
+              </li>
+              <li class="nav-item">
+                <a href="pastEvents.html" class="nav-link text-dark">Gallery</a>
+              </li>
+              <li class="nav-item">
+                <a href="contact.html" class="nav-link text-dark">Contact</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <div>
+      <div class="swiper-container main-slider loading">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <figure
+              class="slide-bgimg"
+              style="
+                background-image: url(assets/img/0-_-_-01032024084543-mas.jpg);
+              "
+            >
+              <img
+                src="assets/img/0-_-_-01032024084543-mas.jpg"
+                class="entity-img"
+                alt="0-_-_-01032024084543-mas.jpg"
+              />
+            </figure>
+            <div class="content">
+              <p class="title">Massive Attack</p>
+              <span class="caption"
+                >Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Integer convallis urna vitae nulla ullamcorper, sit amet
+                fringilla quam hendrerit. Fusce at ex nec sapien consectetur
+                ultricies.</span
+              >
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <figure
+              class="slide-bgimg"
+              style="
+                background-image: url(assets/img/1-_-_-02112023114138-andrea_bocelli_02112023.jpg);
+              "
+            >
+              <img
+                src="assets/img/1-_-_-02112023114138-andrea_bocelli_02112023.jpg"
+                class="entity-img"
+                alt="1-_-_-02112023114138-andrea_bocelli_02112023.jpg"
+              />
+            </figure>
+            <div class="content">
+              <p class="title">Andrea Bocelli 30.Yıl Konseri</p>
+              <span class="caption"
+                >Cras nec semper nisi, ac condimentum justo. Sed dignissim ipsum
+                nec mi commodo, eu varius risus maximus. Morbi auctor consequat
+                leo, vel condimentum metus congue sit amet.</span
+              >
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <figure
+              class="slide-bgimg"
+              style="
+                background-image: url(assets/img/2-_-_-04012024141340-azerbaycan_halk_gorsel.jpg);
+              "
+            >
+              <img
+                src="assets/img/2-_-_-04012024141340-azerbaycan_halk_gorsel.jpg"
+                class="entity-img"
+                alt="2-_-_-04012024141340-azerbaycan_halk_gorsel.jpg"
+              />
+            </figure>
+            <div class="content">
+              <p class="title">Azerbaycan Devlet Halk Dansları Topluluğu</p>
+              <span class="caption"
+                >Nulla facilisi. Vestibulum sodales dui nec ligula vulputate, id
+                mattis turpis eleifend. Sed hendrerit commodo ante, ac
+                consectetur metus dapibus at.</span
+              >
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <figure
+              class="slide-bgimg"
+              style="
+                background-image: url(assets/img/3-_-_-05022024141520-gustavo_santaolalla.jpg);
+              "
+            >
+              <img
+                src="assets/img/3-_-_-05022024141520-gustavo_santaolalla.jpg"
+                class="entity-img"
+                alt="3-_-_-05022024141520-gustavo_santaolalla.jpg"
+              />
+            </figure>
+            <div class="content">
+              <p class="title">Gustavo Santaolalla</p>
+              <span class="caption"
+                >Duis feugiat, ipsum sit amet laoreet venenatis, mi nisi
+                pharetra nisi, sed pharetra elit dolor sed sapien. Vivamus
+                tincidunt turpis et ante fringilla, eget placerat velit
+                vestibulum.</span
+              >
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <figure
+              class="slide-bgimg"
+              style="
+                background-image: url(assets/img/4-_-_-05022024162637-dimash_05022024.jpg);
+              "
+            >
+              <img
+                src="assets/img/4-_-_-05022024162637-dimash_05022024.jpg"
+                class="entity-img"
+                alt="4-_-_-05022024162637-dimash_05022024.jpg"
+              />
+            </figure>
+            <div class="content">
+              <p class="title">Dimash Qudaibergen</p>
+              <span class="caption"
+                >Etiam ultrices ante vel arcu scelerisque commodo. In hac
+                habitasse platea dictumst. Nam at dolor vestibulum, rutrum nisi
+                in, commodo sem.</span
+              >
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <figure
+              class="slide-bgimg"
+              style="
+                background-image: url(assets/img/5-_-_-05032024175146-placebo.jpg);
+              "
+            >
+              <img
+                src="assets/img/5-_-_-05032024175146-placebo.jpg"
+                class="entity-img"
+                alt="5-_-_-05032024175146-placebo.jpg"
+              />
+            </figure>
+            <div class="content">
+              <p class="title">Placebo</p>
+              <span class="caption"
+                >Maecenas id libero vehicula, vehicula tellus sed, congue nunc.
+                Nunc ultrices, nisi vitae varius convallis, urna magna fermentum
+                mauris, in consequat quam purus vel nunc.</span
+              >
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <figure
+              class="slide-bgimg"
+              style="
+                background-image: url(assets/img/6-_-_-06022024143507-accept.jpg);
+              "
+            >
+              <img
+                src="assets/img/6-_-_-06022024143507-accept.jpg"
+                class="entity-img"
+                alt="6-_-_-06022024143507-accept.jpg"
+              />
+            </figure>
+            <div class="content">
+              <p class="title">%100 Metal Sunar: Accept</p>
+              <span class="caption"
+                >Proin sit amet dui luctus, aliquet metus non, aliquet mi. Ut
+                luctus enim at orci sollicitudin, at euismod lacus interdum. Sed
+                feugiat arcu sit amet dolor euismod dapibus.</span
+              >
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <figure
+              class="slide-bgimg"
+              style="
+                background-image: url(assets/img/7-_-_-06032024174742-buena_vista_all_stars-passo_banner.jpg);
+              "
+            >
+              <img
+                src="assets/img/7-_-_-06032024174742-buena_vista_all_stars-passo_banner.jpg"
+                class="entity-img"
+                alt="7-_-_-06032024174742-buena_vista_all_stars-passo_banner.jpg"
+              />
+            </figure>
+            <div class="content">
+              <p class="title">Buena Vista All Stars</p>
+              <span class="caption"
+                >Phasellus nec arcu vel nibh pellentesque tincidunt. Nam
+                tincidunt lacus in ipsum ultricies, nec ultricies sapien
+                cursus.</span
+              >
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <figure
+              class="slide-bgimg"
+              style="
+                background-image: url(assets/img/8-_-_-07032024143219-bryan_adams.jpg);
+              "
+            >
+              <img
+                src="assets/img/8-_-_-07032024143219-bryan_adams.jpg"
+                class="entity-img"
+                alt="8-_-_-07032024143219-bryan_adams.jpg"
+              />
+            </figure>
+            <div class="content">
+              <p class="title">Bryan Adams</p>
+              <span class="caption"
+                >Aliquam erat volutpat. Cras congue, ex sit amet tincidunt
+                venenatis, urna lorem tempor magna, eget ultricies risus arcu at
+                justo.</span
+              >
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <figure
+              class="slide-bgimg"
+              style="
+                background-image: url(assets/img/9-_-_-07112023102034-dickinson_07112023_2.jpg);
+              "
+            >
+              <img
+                src="assets/img/9-_-_-07112023102034-dickinson_07112023_2.jpg"
+                class="entity-img"
+                alt="9-_-_-07112023102034-dickinson_07112023_2.jpg"
+              />
+            </figure>
+            <div class="content">
+              <p class="title">%100 Metal Sunar: Bruce Dickinson</p>
+              <span class="caption"
+                >Sed vitae eros euismod, fermentum nulla id, ultricies velit.
+                Quisque finibus diam vel neque suscipit vehicula. Suspendisse in
+                eleifend ipsum, et tristique turpis.</span
+              >
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <figure
+              class="slide-bgimg"
+              style="
+                background-image: url(assets/img/10-_-_-24012024011746-david_guetta_passo_gorseli.jpg);
+              "
+            >
+              <img
+                src="assets/img/10-_-_-24012024011746-david_guetta_passo_gorseli.jpg"
+                class="entity-img"
+                alt="10-_-_-24012024011746-david_guetta_passo_gorseli.jpg"
+              />
+            </figure>
+            <div class="content">
+              <p class="title">David Guetta</p>
+              <span class="caption"
+                >Pellentesque interdum massa quis ultricies venenatis. Integer
+                auctor efficitur odio eget consectetur. Suspendisse vel turpis
+                ac risus elementum accumsan.</span
+              >
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <figure
+              class="slide-bgimg"
+              style="
+                background-image: url(assets/img/11-_-_-08032024145455-oscar_and_the_wolf_passo_gorseli.jpg);
+              "
+            >
+              <img
+                src="assets/img/11-_-_-08032024145455-oscar_and_the_wolf_passo_gorseli.jpg"
+                class="entity-img"
+                alt="11-_-_-08032024145455-oscar_and_the_wolf_passo_gorseli.jpg"
+              />
+            </figure>
+            <div class="content">
+              <p class="title">Oscar And The Wolf</p>
+              <span class="caption"
+                >Vivamus luctus nisi a aliquet eleifend. Aliquam et odio
+                ullamcorper, pulvinar enim sed, feugiat libero.</span
+              >
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <figure
+              class="slide-bgimg"
+              style="
+                background-image: url(assets/img/12-_-_-09022024192749-psm_loves2dance_passo_duyuru.jpg);
+              "
+            >
+              <img
+                src="assets/img/12-_-_-09022024192749-psm_loves2dance_passo_duyuru.jpg"
+                class="entity-img"
+                alt="12-_-_-09022024192749-psm_loves2dance_passo_duyuru.jpg"
+              />
+            </figure>
+            <div class="content">
+              <p class="title">PSMLoves2Dance Festival</p>
+              <span class="caption"
+                >Fusce eget eleifend turpis. Phasellus ut ultrices urna. Duis
+                dignissim pharetra nisi, nec auctor justo pellentesque et.</span
+              >
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <figure
+              class="slide-bgimg"
+              style="
+                background-image: url(assets/img/13-_-_-10012024152512-salut_salon_10012024.jpg);
+              "
+            >
+              <img
+                src="assets/img/13-_-_-10012024152512-salut_salon_10012024.jpg"
+                class="entity-img"
+                alt="13-_-_-10012024152512-salut_salon_10012024.jpg"
+              />
+            </figure>
+            <div class="content">
+              <p class="title">Salut Salon</p>
+              <span class="caption"
+                >Vestibulum ante ipsum primis in faucibus orci luctus et
+                ultrices posuere cubilia Curae; Maecenas ac justo eget lacus
+                convallis aliquam nec et purus.</span
+              >
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <figure
+              class="slide-bgimg"
+              style="
+                background-image: url(assets/img/14-_-_-12022024142702-gsf2024en.jpg);
+              "
+            >
+              <img
+                src="assets/img/14-_-_-12022024142702-gsf2024en.jpg"
+                class="entity-img"
+                alt="14-_-_-12022024142702-gsf2024en.jpg"
+              />
+            </figure>
+            <div class="content">
+              <p class="title">+1 Sunar : Gezgin Salon Festivali</p>
+              <span class="caption"
+                >Nunc pulvinar ultricies arcu nec consectetur. Suspendisse
+                potenti. Nullam eleifend feugiat orci, vitae efficitur ipsum
+                fringilla a.</span
+              >
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <figure
+              class="slide-bgimg"
+              style="
+                background-image: url(assets/img/15-_-_-12122023115344-hayko_cepkin_12122023.jpg);
+              "
+            >
+              <img
+                src="assets/img/15-_-_-12122023115344-hayko_cepkin_12122023.jpg"
+                class="entity-img"
+                alt="15-_-_-12122023115344-hayko_cepkin_12122023.jpg"
+              />
+            </figure>
+            <div class="content">
+              <p class="title">Hayko Cepkin Stadium Show</p>
+              <span class="caption"
+                >Curabitur pulvinar, erat ac interdum consequat, mi metus
+                aliquam justo, nec eleifend est arcu at elit. Nunc sed libero a
+                dui iaculis scelerisque.</span
+              >
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <figure
+              class="slide-bgimg"
+              style="
+                background-image: url(assets/img/16-_-_-13022024171401-louis_tomlinson_passo_gorseli.jpg);
+              "
+            >
+              <img
+                src="assets/img/16-_-_-13022024171401-louis_tomlinson_passo_gorseli.jpg"
+                class="entity-img"
+                alt="16-_-_-13022024171401-louis_tomlinson_passo_gorseli.jpg"
+              />
+            </figure>
+            <div class="content">
+              <p class="title">Louis Tomlinson</p>
+              <span class="caption"
+                >Integer vestibulum dui nec dui lobortis, eu consequat lorem
+                efficitur. Mauris sodales dictum neque nec consectetur. Sed nec
+                est nec ipsum vestibulum malesuada.</span
+              >
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <figure
+              class="slide-bgimg"
+              style="
+                background-image: url(assets/img/17-_-_-14032024110015-mvo_bkm.jpg);
+              "
+            >
+              <img
+                src="assets/img/17-_-_-14032024110015-mvo_bkm.jpg"
+                class="entity-img"
+                alt="17-_-_-14032024110015-mvo_bkm.jpg"
+              />
+            </figure>
+            <div class="content">
+              <p class="title">mor ve ötesi Senfonik</p>
+              <span class="caption"
+                >Duis vitae ultrices nunc. Nulla facilisi. Proin nec ante in
+                mauris scelerisque pharetra.</span
+              >
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <figure
+              class="slide-bgimg"
+              style="
+                background-image: url(assets/img/18-_-_-15032024142804-cf_passo.jpg);
+              "
+            >
+              <img
+                src="assets/img/18-_-_-15032024142804-cf_passo.jpg"
+                class="entity-img"
+                alt="18-_-_-15032024142804-cf_passo.jpg"
+              />
+            </figure>
+            <div class="content">
+              <p class="title">Çocukların Festivali</p>
+              <span class="caption"
+                >Quisque rhoncus, enim sed pellentesque tincidunt, nisi arcu
+                feugiat purus, vel dictum metus purus nec ex. Nulla
+                facilisi.</span
+              >
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <figure
+              class="slide-bgimg"
+              style="
+                background-image: url(assets/img/19-_-_-15032024150326-1920x1080.jpg);
+              "
+            >
+              <img
+                src="assets/img/19-_-_-15032024150326-1920x1080.jpg"
+                class="entity-img"
+                alt="19-_-_-15032024150326-1920x1080.jpg"
+              />
+            </figure>
+            <div class="content">
+              <p class="title">Semicenk</p>
+              <span class="caption"
+                >Morbi pellentesque sapien sit amet quam ultricies, at
+                consectetur est congue. Phasellus convallis sollicitudin risus,
+                eu aliquam justo bibendum et.</span
+              >
+            </div>
+          </div>
+        </div>
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev swiper-button-white"></div>
+        <div class="swiper-button-next swiper-button-white"></div>
+      </div>
+
+      <!-- Thumbnail navigation -->
+      <div class="swiper-container nav-slider loading">
+        <div class="swiper-wrapper" role="navigation">
+          <div class="swiper-slide">
+            <figure
+              class="slide-bgimg"
+              style="
+                background-image: url(assets/img/0-_-_-01032024084543-mas.jpg);
+              "
+            >
+              <img
+                src="assets/img/0-_-_-01032024084543-mas.jpg"
+                class="entity-img"
+                alt="0-_-_-01032024084543-mas.jpg"
+              />
+            </figure>
+          </div>
+          <div class="swiper-slide">
+            <figure
+              class="slide-bgimg"
+              style="
+                background-image: url(assets/img/1-_-_-02112023114138-andrea_bocelli_02112023.jpg);
+              "
+            >
+              <img
+                src="assets/img/1-_-_-02112023114138-andrea_bocelli_02112023.jpg"
+                class="entity-img"
+                alt="1-_-_-02112023114138-andrea_bocelli_02112023.jpg"
+              />
+            </figure>
+          </div>
+          <div class="swiper-slide">
+            <figure
+              class="slide-bgimg"
+              style="
+                background-image: url(assets/img/2-_-_-04012024141340-azerbaycan_halk_gorsel.jpg);
+              "
+            >
+              <img
+                src="assets/img/2-_-_-04012024141340-azerbaycan_halk_gorsel.jpg"
+                class="entity-img"
+                alt="2-_-_-04012024141340-azerbaycan_halk_gorsel.jpg"
+              />
+            </figure>
+          </div>
+          <div class="swiper-slide">
+            <figure
+              class="slide-bgimg"
+              style="
+                background-image: url(assets/img/3-_-_-05022024141520-gustavo_santaolalla.jpg);
+              "
+            >
+              <img
+                src="assets/img/3-_-_-05022024141520-gustavo_santaolalla.jpg"
+                class="entity-img"
+                alt="3-_-_-05022024141520-gustavo_santaolalla.jpg"
+              />
+            </figure>
+          </div>
+          <div class="swiper-slide">
+            <figure
+              class="slide-bgimg"
+              style="
+                background-image: url(assets/img/4-_-_-05022024162637-dimash_05022024.jpg);
+              "
+            >
+              <img
+                src="assets/img/4-_-_-05022024162637-dimash_05022024.jpg"
+                class="entity-img"
+                alt="4-_-_-05022024162637-dimash_05022024.jpg"
+              />
+            </figure>
+          </div>
+          <div class="swiper-slide">
+            <figure
+              class="slide-bgimg"
+              style="
+                background-image: url(assets/img/5-_-_-05032024175146-placebo.jpg);
+              "
+            >
+              <img
+                src="assets/img/5-_-_-05032024175146-placebo.jpg"
+                class="entity-img"
+                alt="5-_-_-05032024175146-placebo.jpg"
+              />
+            </figure>
+          </div>
+          <div class="swiper-slide">
+            <figure
+              class="slide-bgimg"
+              style="
+                background-image: url(assets/img/6-_-_-06022024143507-accept.jpg);
+              "
+            >
+              <img
+                src="assets/img/6-_-_-06022024143507-accept.jpg"
+                class="entity-img"
+                alt="6-_-_-06022024143507-accept.jpg"
+              />
+            </figure>
+          </div>
+          <div class="swiper-slide">
+            <figure
+              class="slide-bgimg"
+              style="
+                background-image: url(assets/img/7-_-_-06032024174742-buena_vista_all_stars-passo_banner.jpg);
+              "
+            >
+              <img
+                src="assets/img/7-_-_-06032024174742-buena_vista_all_stars-passo_banner.jpg"
+                class="entity-img"
+                alt="7-_-_-06032024174742-buena_vista_all_stars-passo_banner.jpg"
+              />
+            </figure>
+          </div>
+          <div class="swiper-slide">
+            <figure
+              class="slide-bgimg"
+              style="
+                background-image: url(assets/img/8-_-_-07032024143219-bryan_adams.jpg);
+              "
+            >
+              <img
+                src="assets/img/8-_-_-07032024143219-bryan_adams.jpg"
+                class="entity-img"
+                alt="8-_-_-07032024143219-bryan_adams.jpg"
+              />
+            </figure>
+          </div>
+          <div class="swiper-slide">
+            <figure
+              class="slide-bgimg"
+              style="
+                background-image: url(assets/img/9-_-_-07112023102034-dickinson_07112023_2.jpg);
+              "
+            >
+              <img
+                src="assets/img/9-_-_-07112023102034-dickinson_07112023_2.jpg"
+                class="entity-img"
+                alt="9-_-_-07112023102034-dickinson_07112023_2.jpg"
+              />
+            </figure>
+          </div>
+          <div class="swiper-slide">
+            <figure
+              class="slide-bgimg"
+              style="
+                background-image: url(assets/img/10-_-_-24012024011746-david_guetta_passo_gorseli.jpg);
+              "
+            >
+              <img
+                src="assets/img/10-_-_-24012024011746-david_guetta_passo_gorseli.jpg"
+                class="entity-img"
+                alt="10-_-_-24012024011746-david_guetta_passo_gorseli.jpg"
+              />
+            </figure>
+          </div>
+          <div class="swiper-slide">
+            <figure
+              class="slide-bgimg"
+              style="
+                background-image: url(assets/img/11-_-_-08032024145455-oscar_and_the_wolf_passo_gorseli.jpg);
+              "
+            >
+              <img
+                src="assets/img/11-_-_-08032024145455-oscar_and_the_wolf_passo_gorseli.jpg"
+                class="entity-img"
+                alt="11-_-_-08032024145455-oscar_and_the_wolf_passo_gorseli.jpg"
+              />
+            </figure>
+          </div>
+          <div class="swiper-slide">
+            <figure
+              class="slide-bgimg"
+              style="
+                background-image: url(assets/img/12-_-_-09022024192749-psm_loves2dance_passo_duyuru.jpg);
+              "
+            >
+              <img
+                src="assets/img/12-_-_-09022024192749-psm_loves2dance_passo_duyuru.jpg"
+                class="entity-img"
+                alt="12-_-_-09022024192749-psm_loves2dance_passo_duyuru.jpg"
+              />
+            </figure>
+          </div>
+          <div class="swiper-slide">
+            <figure
+              class="slide-bgimg"
+              style="
+                background-image: url(assets/img/13-_-_-10012024152512-salut_salon_10012024.jpg);
+              "
+            >
+              <img
+                src="assets/img/13-_-_-10012024152512-salut_salon_10012024.jpg"
+                class="entity-img"
+                alt="13-_-_-10012024152512-salut_salon_10012024.jpg"
+              />
+            </figure>
+          </div>
+          <div class="swiper-slide">
+            <figure
+              class="slide-bgimg"
+              style="
+                background-image: url(assets/img/14-_-_-12022024142702-gsf2024en.jpg);
+              "
+            >
+              <img
+                src="assets/img/14-_-_-12022024142702-gsf2024en.jpg"
+                class="entity-img"
+                alt="14-_-_-12022024142702-gsf2024en.jpg"
+              />
+            </figure>
+          </div>
+          <div class="swiper-slide">
+            <figure
+              class="slide-bgimg"
+              style="
+                background-image: url(assets/img/15-_-_-12122023115344-hayko_cepkin_12122023.jpg);
+              "
+            >
+              <img
+                src="assets/img/15-_-_-12122023115344-hayko_cepkin_12122023.jpg"
+                class="entity-img"
+                alt="15-_-_-12122023115344-hayko_cepkin_12122023.jpg"
+              />
+            </figure>
+          </div>
+          <div class="swiper-slide">
+            <figure
+              class="slide-bgimg"
+              style="
+                background-image: url(assets/img/16-_-_-13022024171401-louis_tomlinson_passo_gorseli.jpg);
+              "
+            >
+              <img
+                src="assets/img/16-_-_-13022024171401-louis_tomlinson_passo_gorseli.jpg"
+                class="entity-img"
+                alt="16-_-_-13022024171401-louis_tomlinson_passo_gorseli.jpg"
+              />
+            </figure>
+          </div>
+          <div class="swiper-slide">
+            <figure
+              class="slide-bgimg"
+              style="
+                background-image: url(assets/img/17-_-_-14032024110015-mvo_bkm.jpg);
+              "
+            >
+              <img
+                src="assets/img/17-_-_-14032024110015-mvo_bkm.jpg"
+                class="entity-img"
+                alt="17-_-_-14032024110015-mvo_bkm.jpg"
+              />
+            </figure>
+          </div>
+          <div class="swiper-slide">
+            <figure
+              class="slide-bgimg"
+              style="
+                background-image: url(assets/img/18-_-_-15032024142804-cf_passo.jpg);
+              "
+            >
+              <img
+                src="assets/img/18-_-_-15032024142804-cf_passo.jpg"
+                class="entity-img"
+                alt="18-_-_-15032024142804-cf_passo.jpg"
+              />
+            </figure>
+          </div>
+          <div class="swiper-slide">
+            <figure
+              class="slide-bgimg"
+              style="
+                background-image: url(assets/img/19-_-_-15032024150326-1920x1080.jpg);
+              "
+            >
+              <img
+                src="assets/img/19-_-_-15032024150326-1920x1080.jpg"
+                class="entity-img"
+                alt="19-_-_-15032024150326-1920x1080.jpg"
+              />
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <section class="container d-flex flex-wrap justify-content-evenly">
+        <div class="card" style="max-width: 25rem !important">
+          <img
+            src="assets/img/0-_-_-01032024084543-mas.jpg"
+            class="card-img-top"
+            alt="0-_-_-01032024084543-mas.jpg"
+          />
+          <div class="card-body card-body-container">
+            <h5 class="card-title">Massive Attack</h5>
+            <p class="card-text"><i class="fa fa-calendar"></i>2024-04-23</p>
+            <p class="card-text"><i class="fa fa-clock-o"></i>20:00</p>
+            <a
+              href="event_details.html#0-_-_-01032024084543-mas.jpg"
+              class="btn btn-primary mt-100"
+              >See Detail</a
+            >
+          </div>
+        </div>
+        <div class="card" style="max-width: 25rem !important">
+          <img
+            src="assets/img/1-_-_-02112023114138-andrea_bocelli_02112023.jpg"
+            class="card-img-top"
+            alt="1-_-_-02112023114138-andrea_bocelli_02112023.jpg"
+          />
+          <div class="card-body card-body-container">
+            <h5 class="card-title">Andrea Bocelli 30.Yıl Konseri</h5>
+            <p class="card-text"><i class="fa fa-calendar"></i>2024-04-25</p>
+            <p class="card-text"><i class="fa fa-clock-o"></i>20:00</p>
+            <a
+              href="event_details.html#1-_-_-02112023114138-andrea_bocelli_02112023.jpg"
+              class="btn btn-primary mt-100"
+              >See Detail</a
+            >
+          </div>
+        </div>
+        <div class="card" style="max-width: 25rem !important">
+          <img
+            src="assets/img/2-_-_-04012024141340-azerbaycan_halk_gorsel.jpg"
+            class="card-img-top"
+            alt="2-_-_-04012024141340-azerbaycan_halk_gorsel.jpg"
+          />
+          <div class="card-body card-body-container">
+            <h5 class="card-title">
+              Azerbaycan Devlet Halk Dansları Topluluğu
+            </h5>
+            <p class="card-text"><i class="fa fa-calendar"></i>2024-05-16</p>
+            <p class="card-text"><i class="fa fa-clock-o"></i>20:00</p>
+            <a
+              href="event_details.html#2-_-_-04012024141340-azerbaycan_halk_gorsel.jpg"
+              class="btn btn-primary mt-100"
+              >See Detail</a
+            >
+          </div>
+        </div>
+        <div class="card" style="max-width: 25rem !important">
+          <img
+            src="assets/img/3-_-_-05022024141520-gustavo_santaolalla.jpg"
+            class="card-img-top"
+            alt="3-_-_-05022024141520-gustavo_santaolalla.jpg"
+          />
+          <div class="card-body card-body-container">
+            <h5 class="card-title">Gustavo Santaolalla</h5>
+            <p class="card-text"><i class="fa fa-calendar"></i>2024-05-21</p>
+            <p class="card-text"><i class="fa fa-clock-o"></i>20:00</p>
+            <a
+              href="event_details.html#3-_-_-05022024141520-gustavo_santaolalla.jpg"
+              class="btn btn-primary mt-100"
+              >See Detail</a
+            >
+          </div>
+        </div>
+        <div class="card" style="max-width: 25rem !important">
+          <img
+            src="assets/img/4-_-_-05022024162637-dimash_05022024.jpg"
+            class="card-img-top"
+            alt="4-_-_-05022024162637-dimash_05022024.jpg"
+          />
+          <div class="card-body card-body-container">
+            <h5 class="card-title">Dimash Qudaibergen</h5>
+            <p class="card-text"><i class="fa fa-calendar"></i>2024-05-29</p>
+            <p class="card-text"><i class="fa fa-clock-o"></i>20:00</p>
+            <a
+              href="event_details.html#4-_-_-05022024162637-dimash_05022024.jpg"
+              class="btn btn-primary mt-100"
+              >See Detail</a
+            >
+          </div>
+        </div>
+        <div class="card" style="max-width: 25rem !important">
+          <img
+            src="assets/img/5-_-_-05032024175146-placebo.jpg"
+            class="card-img-top"
+            alt="5-_-_-05032024175146-placebo.jpg"
+          />
+          <div class="card-body card-body-container">
+            <h5 class="card-title">Placebo</h5>
+            <p class="card-text"><i class="fa fa-calendar"></i>2024-06-14</p>
+            <p class="card-text"><i class="fa fa-clock-o"></i>20:00</p>
+            <a
+              href="event_details.html#5-_-_-05032024175146-placebo.jpg"
+              class="btn btn-primary mt-100"
+              >See Detail</a
+            >
+          </div>
+        </div>
+        <div class="card" style="max-width: 25rem !important">
+          <img
+            src="assets/img/6-_-_-06022024143507-accept.jpg"
+            class="card-img-top"
+            alt="6-_-_-06022024143507-accept.jpg"
+          />
+          <div class="card-body card-body-container">
+            <h5 class="card-title">%100 Metal Sunar: Accept</h5>
+            <p class="card-text"><i class="fa fa-calendar"></i>2024-06-15</p>
+            <p class="card-text"><i class="fa fa-clock-o"></i>20:00</p>
+            <a
+              href="event_details.html#6-_-_-06022024143507-accept.jpg"
+              class="btn btn-primary mt-100"
+              >See Detail</a
+            >
+          </div>
+        </div>
+        <div class="card" style="max-width: 25rem !important">
+          <img
+            src="assets/img/7-_-_-06032024174742-buena_vista_all_stars-passo_banner.jpg"
+            class="card-img-top"
+            alt="7-_-_-06032024174742-buena_vista_all_stars-passo_banner.jpg"
+          />
+          <div class="card-body card-body-container">
+            <h5 class="card-title">Buena Vista All Stars</h5>
+            <p class="card-text"><i class="fa fa-calendar"></i>2024-06-16</p>
+            <p class="card-text"><i class="fa fa-clock-o"></i>20:00</p>
+            <a
+              href="event_details.html#7-_-_-06032024174742-buena_vista_all_stars-passo_banner.jpg"
+              class="btn btn-primary mt-100"
+              >See Detail</a
+            >
+          </div>
+        </div>
+        <div class="card" style="max-width: 25rem !important">
+          <img
+            src="assets/img/8-_-_-07032024143219-bryan_adams.jpg"
+            class="card-img-top"
+            alt="8-_-_-07032024143219-bryan_adams.jpg"
+          />
+          <div class="card-body card-body-container">
+            <h5 class="card-title">Bryan Adams</h5>
+            <p class="card-text"><i class="fa fa-calendar"></i>2024-06-17</p>
+            <p class="card-text"><i class="fa fa-clock-o"></i>20:00</p>
+            <a
+              href="event_details.html#8-_-_-07032024143219-bryan_adams.jpg"
+              class="btn btn-primary mt-100"
+              >See Detail</a
+            >
+          </div>
+        </div>
+        <div class="card" style="max-width: 25rem !important">
+          <img
+            src="assets/img/9-_-_-07112023102034-dickinson_07112023_2.jpg"
+            class="card-img-top"
+            alt="9-_-_-07112023102034-dickinson_07112023_2.jpg"
+          />
+          <div class="card-body card-body-container">
+            <h5 class="card-title">%100 Metal Sunar: Bruce Dickinson</h5>
+            <p class="card-text"><i class="fa fa-calendar"></i>2024-07-02</p>
+            <p class="card-text"><i class="fa fa-clock-o"></i>20:00</p>
+            <a
+              href="event_details.html#9-_-_-07112023102034-dickinson_07112023_2.jpg"
+              class="btn btn-primary mt-100"
+              >See Detail</a
+            >
+          </div>
+        </div>
+        <div class="card" style="max-width: 25rem !important">
+          <img
+            src="assets/img/10-_-_-24012024011746-david_guetta_passo_gorseli.jpg"
+            class="card-img-top"
+            alt="10-_-_-24012024011746-david_guetta_passo_gorseli.jpg"
+          />
+          <div class="card-body card-body-container">
+            <h5 class="card-title">David Guetta</h5>
+            <p class="card-text"><i class="fa fa-calendar"></i>2024-08-16</p>
+            <p class="card-text"><i class="fa fa-clock-o"></i>20:00</p>
+            <a
+              href="event_details.html#10-_-_-24012024011746-david_guetta_passo_gorseli.jpg"
+              class="btn btn-primary mt-100"
+              >See Detail</a
+            >
+          </div>
+        </div>
+        <div class="card" style="max-width: 25rem !important">
+          <img
+            src="assets/img/11-_-_-08032024145455-oscar_and_the_wolf_passo_gorseli.jpg"
+            class="card-img-top"
+            alt="11-_-_-08032024145455-oscar_and_the_wolf_passo_gorseli.jpg"
+          />
+          <div class="card-body card-body-container">
+            <h5 class="card-title">Oscar And The Wolf</h5>
+            <p class="card-text"><i class="fa fa-calendar"></i>2024-08-23</p>
+            <p class="card-text"><i class="fa fa-clock-o"></i>20:00</p>
+            <a
+              href="event_details.html#11-_-_-08032024145455-oscar_and_the_wolf_passo_gorseli.jpg"
+              class="btn btn-primary mt-100"
+              >See Detail</a
+            >
+          </div>
+        </div>
+        <div class="card" style="max-width: 25rem !important">
+          <img
+            src="assets/img/12-_-_-09022024192749-psm_loves2dance_passo_duyuru.jpg"
+            class="card-img-top"
+            alt="12-_-_-09022024192749-psm_loves2dance_passo_duyuru.jpg"
+          />
+          <div class="card-body card-body-container">
+            <h5 class="card-title">PSMLoves2Dance Festival</h5>
+            <p class="card-text"><i class="fa fa-calendar"></i>2024-08-28</p>
+            <p class="card-text"><i class="fa fa-clock-o"></i>20:00</p>
+            <a
+              href="event_details.html#12-_-_-09022024192749-psm_loves2dance_passo_duyuru.jpg"
+              class="btn btn-primary mt-100"
+              >See Detail</a
+            >
+          </div>
+        </div>
+        <div class="card" style="max-width: 25rem !important">
+          <img
+            src="assets/img/13-_-_-10012024152512-salut_salon_10012024.jpg"
+            class="card-img-top"
+            alt="13-_-_-10012024152512-salut_salon_10012024.jpg"
+          />
+          <div class="card-body card-body-container">
+            <h5 class="card-title">Salut Salon</h5>
+            <p class="card-text"><i class="fa fa-calendar"></i>2024-09-01</p>
+            <p class="card-text"><i class="fa fa-clock-o"></i>20:00</p>
+            <a
+              href="event_details.html#13-_-_-10012024152512-salut_salon_10012024.jpg"
+              class="btn btn-primary mt-100"
+              >See Detail</a
+            >
+          </div>
+        </div>
+        <div class="card" style="max-width: 25rem !important">
+          <img
+            src="assets/img/14-_-_-12022024142702-gsf2024en.jpg"
+            class="card-img-top"
+            alt="14-_-_-12022024142702-gsf2024en.jpg"
+          />
+          <div class="card-body card-body-container">
+            <h5 class="card-title">+1 Sunar : Gezgin Salon Festivali</h5>
+            <p class="card-text"><i class="fa fa-calendar"></i>2024-09-13</p>
+            <p class="card-text"><i class="fa fa-clock-o"></i>20:00</p>
+            <a
+              href="event_details.html#14-_-_-12022024142702-gsf2024en.jpg"
+              class="btn btn-primary mt-100"
+              >See Detail</a
+            >
+          </div>
+        </div>
+        <div class="card" style="max-width: 25rem !important">
+          <img
+            src="assets/img/15-_-_-12122023115344-hayko_cepkin_12122023.jpg"
+            class="card-img-top"
+            alt="15-_-_-12122023115344-hayko_cepkin_12122023.jpg"
+          />
+          <div class="card-body card-body-container">
+            <h5 class="card-title">Hayko Cepkin Stadium Show</h5>
+            <p class="card-text"><i class="fa fa-calendar"></i>2024-09-28</p>
+            <p class="card-text"><i class="fa fa-clock-o"></i>20:00</p>
+            <a
+              href="event_details.html#15-_-_-12122023115344-hayko_cepkin_12122023.jpg"
+              class="btn btn-primary mt-100"
+              >See Detail</a
+            >
+          </div>
+        </div>
+        <div class="card" style="max-width: 25rem !important">
+          <img
+            src="assets/img/16-_-_-13022024171401-louis_tomlinson_passo_gorseli.jpg"
+            class="card-img-top"
+            alt="16-_-_-13022024171401-louis_tomlinson_passo_gorseli.jpg"
+          />
+          <div class="card-body card-body-container">
+            <h5 class="card-title">Louis Tomlinson</h5>
+            <p class="card-text"><i class="fa fa-calendar"></i>2024-10-24</p>
+            <p class="card-text"><i class="fa fa-clock-o"></i>20:00</p>
+            <a
+              href="event_details.html#16-_-_-13022024171401-louis_tomlinson_passo_gorseli.jpg"
+              class="btn btn-primary mt-100"
+              >See Detail</a
+            >
+          </div>
+        </div>
+        <div class="card" style="max-width: 25rem !important">
+          <img
+            src="assets/img/17-_-_-14032024110015-mvo_bkm.jpg"
+            class="card-img-top"
+            alt="17-_-_-14032024110015-mvo_bkm.jpg"
+          />
+          <div class="card-body card-body-container">
+            <h5 class="card-title">mor ve ötesi Senfonik</h5>
+            <p class="card-text"><i class="fa fa-calendar"></i>2024-11-20</p>
+            <p class="card-text"><i class="fa fa-clock-o"></i>20:00</p>
+            <a
+              href="event_details.html#17-_-_-14032024110015-mvo_bkm.jpg"
+              class="btn btn-primary mt-100"
+              >See Detail</a
+            >
+          </div>
+        </div>
+        <div class="card" style="max-width: 25rem !important">
+          <img
+            src="assets/img/18-_-_-15032024142804-cf_passo.jpg"
+            class="card-img-top"
+            alt="18-_-_-15032024142804-cf_passo.jpg"
+          />
+          <div class="card-body card-body-container">
+            <h5 class="card-title">Çocukların Festivali</h5>
+            <p class="card-text"><i class="fa fa-calendar"></i>2024-12-01</p>
+            <p class="card-text"><i class="fa fa-clock-o"></i>20:00</p>
+            <a
+              href="event_details.html#18-_-_-15032024142804-cf_passo.jpg"
+              class="btn btn-primary mt-100"
+              >See Detail</a
+            >
+          </div>
+        </div>
+        <div class="card" style="max-width: 25rem !important">
+          <img
+            src="assets/img/19-_-_-15032024150326-1920x1080.jpg"
+            class="card-img-top"
+            alt="19-_-_-15032024150326-1920x1080.jpg"
+          />
+          <div class="card-body card-body-container">
+            <h5 class="card-title">Semicenk</h5>
+            <p class="card-text"><i class="fa fa-calendar"></i>2024-12-02</p>
+            <p class="card-text"><i class="fa fa-clock-o"></i>20:00</p>
+            <a
+              href="event_details.html#19-_-_-15032024150326-1920x1080.jpg"
+              class="btn btn-primary mt-100"
+              >See Detail</a
+            >
+          </div>
+        </div>
+      </section>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.7/js/swiper.min.js"></script>
+    <script src="slider.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>zActivity Contact Page</title>
+    <link rel="stylesheet" href="./lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <style>
+      p {
+        padding: 1%;
+        margin: 0;
+      }
+      .fa {
+        padding: 5px;
+        font-size: 12px;
+        width: 20px;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 50%;
+      }
+
+      /* Add a hover effect if you want */
+      .fa:hover {
+        opacity: 0.7;
+      }
+
+      /* Set a specific color for each brand */
+
+      /* Facebook */
+      .fa-facebook,
+      .fa-linkedin {
+        background: #3b5998;
+        color: white;
+      }
+      .fa-youtube {
+        background: red;
+        color: white;
+      }
+
+      /* Twitter */
+      .fa-twitter,
+      .fa-instagram {
+        background: #55acee;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav
+        class="navbar fixed-top navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
+      >
+        <div class="container-fluid">
+          <a class="navbar-brand">zActivity</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target=".navbar-collapse"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div
+            class="navbar-collapse collapse d-sm-inline-flex justify-content-between"
+          >
+            <ul class="navbar-nav flex-grow-1">
+              <li class="nav-item">
+                <a href="index.html" class="nav-link text-dark">Home</a>
+              </li>
+              <li class="nav-item">
+                <a href="events.html" class="nav-link text-dark">Events</a>
+              </li>
+              <li class="nav-item">
+                <a href="pastEvents.html" class="nav-link text-dark">Gallery</a>
+              </li>
+              <li class="nav-item">
+                <a href="contact.html" class="nav-link text-dark">Contact</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <form id="form"
+      style="
+        position: relative;
+        top: 60px;
+        display: block;
+        width: 50%;
+        margin: 0 auto;
+      "
+    >
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input
+          type="email"
+          class="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+        />
+        <div id="emailHelp" class="form-text">
+          We'll never share your email with anyone else.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="address" class="form-label">Address</label>
+        <input type="text" class="form-control" id="address" />
+      </div>
+      <div class="mb-3">
+        <label for="phoneNumber" class="form-label">Phone Number</label>
+        <input type="text" class="form-control" id="phoneNumber" />
+      </div>
+      <button
+        style="margin-right: 0; margin-left: 90%"
+        type="submit"
+        class="btn btn-primary"
+        onclick="return formSubmitted();"
+      >
+        Submit
+      </button>
+      <br />
+      <br />
+      <br />
+      <div
+        style="font-size: small; line-height: 13px"
+        class="border border-primary rounded"
+      >
+        <p>If you have any questions, you can conctact with us:</p>
+        <p>E-mail: test@test.com</p>
+        <p>Phone: 0500 555 55 55</p>
+        <p>Address: Pendik/İstanbul</p>
+        <p>
+          Follow us on social media:
+          <!-- Add font awesome icons -->
+          <a href="https://twitter.com/okanedu" class="fa fa-twitter"></a>
+          <a href="https://www.facebook.com/okanedu" class="fa fa-facebook"></a>
+          <a
+            href="https://www.instagram.com/okanuniversitesi/"
+            class="fa fa-instagram"
+          ></a>
+          <a
+            href="https://www.youtube.com/user/okanedu"
+            class="fa fa-youtube"
+          ></a>
+          <a
+            href="https://www.linkedin.com/school/okanuniversitesi/"
+            class="fa fa-linkedin"
+          ></a>
+        </p>
+      </div>
+    </form>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      function formSubmitted() {
+        var address = document.getElementById("address").value;
+        var phoneNumber = document.getElementById("phoneNumber").value;
+        var email = document.getElementById("exampleInputEmail1").value;
+        if (address == "" || phoneNumber == "" || email == "")
+          alert("Please fill the form.");
+        else {
+            alert("Form has been sent.");
+            document.getElementById("form").clear();
+
+        }
+        return false;
+      }
+    </script>
+  </body>
+</html>
